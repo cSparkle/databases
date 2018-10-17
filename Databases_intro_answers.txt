@@ -1,16 +1,80 @@
-What data types do each of these values represent?
+1.
+a) string
+b) integer
+c) date
+d) float
+e) money
 
-"A Clockwork Orange"
-42
-09/02/1945
-98.7
-$15.99
-Explain when a database would be used. Explain when a text file would be used.
+2. A database should be used anytime data is stored for future use and accessible/changeable at one or more locations in real time. A text file is appropriate
+for use through a single access point. If multiple users attempt to modify data in a text file simultaneously, data can be overwritten or fail to save. 
 
-Describe one difference between SQL and other programming languages.
+3. One major distinction between SQL and many other programming languages is that SQL is declarative in nature rather than imperative/procedural.
+With an imperative language, HOW data is accessed is written by the programmer. Conversely, declarative languages focus on WHAT should be accessed and allow
+the database to determine the best method for accessing the desired data.
 
-In your own words, explain how the pieces of a database system fit together at a high level.
+4. In SQL, data is stored in a table structure where data in a cell is associated with data in adjacent cells in a row. Meaning is given to data based not solely on the data type,
+but on what the data represents. This structure enables a programmer to query the database using a clause which specifies what data should be gathered from where in the table with
+the "where" being an identifier that symbolizes a row of associated data. 
 
-Explain the meaning of table, row, column, and value.
+5. A table is the foundation of a SQL database that stores all the data. Each cell within the table holds a value that represents a different meaningful data type. 
+Each column organizes different meaningful data types. For instance, one column in a table might be "age" with each cell under this column holding a numerical value that represents age. 
+A row is where associated data is held. For example, if a table holds data on users of an application, columns might include "username", "age", "sign-up date", and "email". Each row would
+hold the values for each of these datum for a specific user. 
 
-List three data types that can be used in a table.
+6. String, integer, date.
+
+7. 
+a) For the data in the payments table, return all the information under the columns labelled "date" and "amount". Results would be:
+[
+    {'date': '2016-05-01', 'amount': 1500.00},
+    {'date': '2016-05-10', 'amount': 37.00},
+    {'date': '2016-05-15', 'amount': 124.93},
+    {'date': '2016-05-23', 'amount': 54.72}
+]
+
+b) For the data in the payments table, return all the information in each cell under the "amount" column if that amount is greater than 500. For instance,
+[
+    {'amount': 1500.00},
+    {'amount': 37.00},
+    {'amount': 124.93},
+    {'amount': 54.72}
+]
+
+c) For the data in the payments table, return all the information from the cells in the row where the value of the "payee" cell equals 'Mega Foods'. For example,
+[
+    {'date': '2016-05-15', 'payee': 'Mega Foods', 'amount': 124.93, 'memo': 'Groceries},
+]
+
+8.
+a) 
+SELECT email, signup
+FROM users
+WHERE name = 'DeAndre Data';
+
+This will output:
+
+[
+    {'email': 'datad@comcast.net', 'signup': '2008-01-20'}
+]
+
+b)
+SELECT userid
+FROM users
+WHERE email = 'aleesia.algorithm@uw.edu';
+
+This will output:
+
+[
+    {'userid': 1}
+]
+
+c)
+SELECT *
+FROM users
+WHERE userid = 4;
+
+This will output:
+
+[
+    {'userid': 4, 'name': 'Brandy Boolean', 'email': 'bboolean@nasa.gov', 'signup': '1999-10-15'}
+]
