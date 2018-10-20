@@ -1,0 +1,113 @@
+1. adding)
+INSERT INTO users (userid, name, age)
+VALUES
+(001, 'Cortney Thomas', 28),
+(002, 'Thomas Price', 29);
+
+updating)
+UPDATE users SET age=29 WHERE userid=001;
+
+deleting)
+DELETE FROM users WHERE userid=002;
+
+2. adding) For adding data, we first tell the database which table to insert the data into (in the above example, this is users) then specify the three columns of data we are inserting. 
+On the second line, we provide that the following information will be the values for the cells under these columns. Then, we provide the data separated by columns and within parentheses
+in the same order as specified by the column names on the first line. 
+
+updating) We first tell the database which table we are updating (i.e. users) then use SET to identify which value is changing. In other words, we need to target a specific cell under a
+certain column (in the above example, the column is age). Then, we further specify, using the WHERE keyword, which particular cell is being updated by identifying a row.
+
+deleting) As with adding and updating, the first step is to specify which table data will be deleted from. Then, we identify the location of the data to be deleted by specifying the row
+using the WHERE keyword.
+
+3. Varchar is one data type that allows for a string, but sets limits on the possible length of the string. This might be useful for something like a username or password where a limit
+to the length is provided to prevent excessively long inputs from users. The Date datatype is another option that allows input of the date in a variety of possible formats. This
+would also be useful in a table of users and could be set automatically when a user signs up for a service as the date of the start of a subscription. Money can also be used as postgres
+data type and also includes numerous formats such as integers, floating points, and traditional inputs like $150.00. This could be useful in storing information about a user's bank account
+and the amount of available funds. 
+
+4. 
+First and last name: text
+Whether they sent in their RSVP: boolean
+Number of guests: integer
+Number of meals: numeric
+
+CREATE TABLE wedding (
+    name: text,
+    RSVP: boolean,
+    guests: integer,
+    meals: numeric(3, 1)
+);
+
+ALTER TABLE wedding ADD COLUMN thanks boolean SET DEFAULT FALSE;
+
+ALTER TABLE wedding DROP COLUMN meals;
+
+ALTER TABLE wedding ADD COLUMN seating integer;
+
+ALTER TABLE wedding DROP COLUMN seating;
+
+5.
+CREATE TABLE books (
+    ISBN: bigint,
+    title: text,
+    author: text,
+    genre: text,
+    publishDate: date,
+    copies: integer,
+    availableCopies: integer
+);
+
+INSERT INTO books (ISBN, title, author, genre, publishDate, copies, availableCopies)
+VALUES
+(4444444444444, 'Harry Potter', 'J.K. Rowling', 'fiction', 06/26/1997, 10, 8),
+(5555555555555, 'The Lord of the Rings', 'J.R.R. Tolkien', 'fiction', 07/29/1954, 5, 4),
+(6666666666666, 'Name of the Wind', 'Patrick Rothfuss', 'fiction', 03/27/2007, 8, 3);
+
+UPDATE books SET availableCopies=3 WHERE ISBN=5555555555555;
+
+DELETE FROM books WHERE title='Harry Potter';
+
+6. 
+CREATE TABLE spacecrafts (
+    id: integer,
+    name: text,
+    launchYear: numeric(4),
+    originCountry: text,
+    description: text,
+    orbitingBody: text,
+    operating: boolean,
+    milesAway: integer
+);
+
+INSERT INTO spacecrafts (id, name, launchYear, originCountry, description, orbitingBody, operating, milesAway)
+VALUES
+(001, 'Zylon-One', 2056, 'USA', 'top-speed craft designed for human transport', 'moon', TRUE, 146302),
+(002, 'Arbiter', 2039, 'USA', 'stationary craft designed for long-term human colonization', 'moon', TRUE, 223047),
+(003, 'Zenon', 2063, 'Russia', 'un-manned radio communications satellite', 'moon', TRUE, 198376);
+
+DELETE FROM spacecrafts WHERE id=003;
+
+UPDATE spacecrafts SET operating=FALSE WHERE id=001;
+
+7.
+CREATE TABLE emails (
+    id: integer,
+    subject: text,
+    sender: text,
+    otherRecip: text,
+    body: text,
+    timestamp: timestamp,
+    read: boolean,
+    emailChainId: integer
+);
+
+INSERT INTO emails (id, subject, sender, otherRecip, body, timestamp, read, emailChainId)
+VALUES
+(1234, 'New meetup', 'Kim Arnett', 'Chris Canada', 'Hey dudes! I scheduled a new meetup for Friday.', TIMESTAMP '2018-10-18 16:03:28', TRUE, 189614),
+(2345, 'Shipping Details', 'Amazon', '', 'Thank you for your order! It will ship shortly.', TIMESTAMP '2018-10-19 12:48:07', TRUE, 000001),
+(3456, 'Welcome!', 'Instagram', '', 'Thank you for signing up for Instagram!', TIMESTAMP '2018-10-20 02:04:15', FALSE, 000002);
+
+DELETE FROM emails WHERE id=2345;
+
+UPDATE emails SET read=FALSE WHERE id=1234;
