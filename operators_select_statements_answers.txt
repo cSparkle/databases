@@ -1,0 +1,98 @@
+1.
+SELECT (the column or columns of desired data)
+FROM (the table or tables where the data exists)
+WHERE (the data is or is not equal to some condition)
+
+For example, if I wanted to select all the user information in a 'users' table where the first names started with an L, I would write:
+
+SELECT *
+FROM users
+WHERE firstName LIKE 'L%';
+
+2. Smeagol Couldn't Fight The Witch Craft to remember SCFTWC which represents SELECT column(s) FROM table(s) WHERE condition(s). 
+
+3.
+a)
+SELECT name, gender, age
+FROM dogs
+WHERE breed LIKE '%Labrador%';
+
+b)
+SELECT id
+FROM dogs
+WHERE age < 1;
+
+c)
+SELECT name, age
+FROM dogs
+WHERE gender = 'F'
+AND weight > 35;
+
+d)
+SELECT *
+FROM dogs
+WHERE breed NOT LIKE '%shepherd';
+
+e)
+SELECT id, age, weight, breed
+FROM dogs
+WHERE weight > 60
+OR breed = 'great dane';
+
+4. 
+a)
+('name': 'Mushi', 'adoption_date': '2016-03-22'),
+('name': 'Seashell', 'adoption_date': NULL),
+('name': 'Azul', 'adoption_date': '2016-04-17'),
+('name': 'Victoire', 'adoption_date': '2016-09-01'),
+('name': 'Nala', 'adoption_date': NULL);
+
+b)
+('name': 'Mushi', 'age': 1),
+('name': 'Seashell', 'age': 7),
+('name': 'Azul', 'age': 3),
+('name': 'Victoire', 'age': 7),
+('name': 'Nala', 'age': 1);
+
+5.
+a)
+SELECT *
+FROM cats
+WHERE adoption_date = NULL;
+
+b)
+SELECT name, gender
+FROM cats
+WHERE age = 7;
+
+c)
+SELECT name
+FROM cats;
+
+6. 
+>   This represents all figures greater than a defined minimum. For instance, you might use this to search for all users over the age of 17 (i.e. WHERE age > 17;).
+<   This represents all figures less than a defined maximum. You could similarly use this with age, to find all users under age 50 (i.e. WHERE age < 50;). 
+>=   This is greater than OR equal to a defined minimum. For example, to return all cats whose weight is 20 pounds or more (i.e. WHERE weight >= 20;).
+<=   This is less than OR equal to a defined maximum. This could be used to identify all dogs who are less than or equal to 60 pounds (i.e. WHERE weight <= 60;).
+=   This determines whethere two figures are exact equals (it checks for casing with strings). This could be used to find a user when we know the exact spelling of the user's name (i.e. WHERE name = 'Cortney Thomas';).
+!= <>  These operators both represent a check for data that does not match a particular defined condition. If we wanted all users who are not male, we could do: WHERE gender != 'male';
+LIKE   This is used to define partial comparisons with strings. If we aren't sure the exactly how we entered a user name, we could use this along with % to identify where we think a particular word is in a string.
+       For example, if we knew the user's first name but could not remember whether the user's last name was their married or maiden name, we could do this: WHERE name LIKE 'Cortney%';
+AND   This is a logical operator used to define to condition checks. We could use this if we wanted to find all users who are over 18 and have a driver's license (i.e. WHERE age > 18 AND licensed = TRUE;).
+OR   This logical operator defines the acceptance of at least one of several condition checks. We could check for all users in a table who either over 18 or have a driver's license (i.e. WHERE age > 18 OR licensed = TRUE;).
+NOT   This logical operator checks for all data the does not match a particular defined condition. For example, if we wanted to search for all dogs that are not 3 years old, we could do: WHERE age NOT 3;
+
+7. 
+a)
+('name': 'Seashell'),
+('name': 'Nala');
+
+b)
+('name': 'Mushi'),
+('name': 'Seashell'),
+('name': 'Victoire'),
+('name': 'Nala');
+
+c)
+('id': 3),
+('id': 4);
