@@ -1,0 +1,72 @@
+1. Related data between tables can be found in two ways. First, one can use the INNER JOIN technique. If we had two tables, one detailing products and another detailing distributors,
+we could find which products are related to which distributors by comparing distributor numbers. For example:
+
+SELECT distributors.name, products.name
+FROM distributors
+JOIN products
+ON distributor.id = products.distributor_id;
+
+In this case, we would be able to return the distributor name of a particular product that is associated based on the distributor id data shared in both tables. 
+Another way to do this is using NATURAL JOIN, but this can only be done if the column names are exact matches in both tables. For instance, this would work in the above example
+if the column name in the products table were simply id rather than distributor_id. 
+
+2. INNER JOIN is combines information between two tables that share at least some of the data. The related data is combined and output, but the output contains only the desired
+information in a row where data matches between the two tables. For instance, say two groups of students are going on a field trip. Some of the students are in a French class and some of the 
+students are in a History class. Of all these students, a portion of them take BOTH classes. If we were to separate the students into groups, an INNER JOIN separation would give us only the students
+who are in BOTH classes. 
+
+LEFT OUTER JOIN performs the same process as an INNER JOIN, but then also includes rows for every row in the first table. For the columns of data that are present in table 2 that are not present
+in table 1, NULL is entered in the cell. In our example, let's say the students in the History class represent table 1 and the students in French represent table 2. Since the first step of a
+LEFT OUTER JOIN is to perform an INNER JOIN, we start by grouping together the students who are taking BOTH History and French. We then make sure all the remaining students who are taking History (i.e. that are in table 1)
+are also put into our goruping leaving out only the students who only take French. However, the students taking French and History have unique data because they know a second language 
+(for the sake of this argument, we will assume the students who are only taking the History class don't know a second language). In this case, the students taking BOTH History and French have a 
+column of data called "second language" that includes "French" for each student. Since the students who are only taking History have no data, when the LEFT OUTER JOIN is performed, they will receive
+a value of null for this column in their row. 
+
+RIGHT OUTER JOIN is the exact opposite of LEFT OUTER JOIN. The INNER JOIN process is also performed, but after this it is all the rows of table 2 that are accounted for and columsn that exist in
+table 1 but that do not exist in table 2 will get values of NULL when merged. In our example, the INNER JOIN would produce a grouping of the students taking BOTH History and French. Then, since French
+represents table 2, we would ensure there are rows and columns for every student in the French table. Like before, though, the students in History have unique data. They have knowledge about the Sistine Chapel, but
+the French students do not. Thus, there is a column in the History table called "Sistine_knowledge" that does not exist in the French table. When the two are merged, each student who is not in the History
+class (and therefore does not have knowledge of the Sistine Chapel) will receive NULL as the value for the cell under this colummn. 
+
+3. Primary key is similar to an index in that each key is unique within a table and defines that data for a row. A foregin key, on the other hand, is a primary key that is used in a different table to
+categorize things, but is not used in a unique way. That is, a foreign key can appear multiple times throughout a table. An example might be employee computer permissions at a company. Some companies have
+sensitive data that they reserve for only particular individuals to see, so they create permissions groups for employees to determine what files and folders an employee has access to. Let's assume there
+are three permissions: 1 = low level access, 2 = mid level access, and 3 = high level access. In a table with this data, each number (1, 2, 3) represents a primary key because it is used to identify each row
+and only occurs once in the table. In a table of employees, we could use this primary key to declare the level of permissions for each employee. This might look like:
+
+John Smith, 1
+Jane Doe, 3
+Greg Johnson, 3
+Sandy Jones, 2
+Mike Thomas, 2
+William Hughes 1
+
+In this table, the numbers refer to the primary keys of the permissions table, but they have become foreign keys because they are used multiple times and are no longer unique identifiers for each row.
+
+4. Aliasing essentially boils down to abbreviating the names of tables when querying specific columns within those tables. 
+
+5. 
+SELECT p.name, c.salary, c.vacation_days
+FROM professor AS p
+JOIN compensation AS c
+ON p.id = c.professor_id;
+
+6. A NATURAL JOIN is used to find all duplicated data in two or more tables without specifying which columns should be joined or compared. This is probably most suitably used in instances when we don't know
+whether the two tables share data. For example, if we had a table of animal patients for a veterinarian's office and a table for animals with upcoming appointments, we could use NATURAL JOIN to compare the two and see
+whether any of the animals with upcoming appointments have visited the office before. 
+
+7. 
+SELECT * 
+FROM employees 
+JOIN scheduled_shifts ON employees.id = scheduled_shifts.employee_id 
+JOIN shifts ON shifts.id = scheduled_shifts.shift_id;
+
+8. 
+a) 
+SELECT v.first_name, v.last_name, d.name 
+FROM volunteers AS v 
+LEFT OUTER JOIN dogs AS d 
+ON v.foster_dog_id = d.id;
+
+b)
