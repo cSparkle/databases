@@ -125,7 +125,7 @@ e)
 SELECT a.first_name, a.last_name
 FROM adopters AS a
 JOIN dog_adoptions
-ON dog_adoptions.adopter_id = a.id;
+ON dog_adoptions.adopter_id = a.id WHERE dog_adoptions.dog_id = 10007;
 
 RESULTS
 first_name	last_name
@@ -147,8 +147,8 @@ Cedric Diggory	2
 b)
 SELECT p.name, b.title
 FROM patrons AS p
-JOIN transactions AS t ON p.id = t.patron_id
-JOIN books AS b ON b.isbn = t.isbn;
+LEFT JOIN transactions AS t ON p.id = t.patron_id
+LEFT JOIN books AS b ON b.isbn = t.isbn;
 
 RESULTS
 name	title
