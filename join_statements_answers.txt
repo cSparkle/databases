@@ -69,4 +69,93 @@ FROM volunteers AS v
 LEFT OUTER JOIN dogs AS d 
 ON v.foster_dog_id = d.id;
 
+RESULTS
+first_name	last_name	name
+Rubeus	Hagrid	Munchkin
+Marjorie	Dursley	Marmaduke
+Sirius	Black	null
+Remus	Lupin	null
+Albus	Dumbledore	null
+
+
 b)
+SELECT c.name, a.first_name, a.last_name, cat_adoptions.date
+FROM cat_adoptions
+JOIN adopters AS a ON a.id = cat_adoptions.adopter_id
+JOIN cats AS c ON c.id = cat_adoptions.cat_id WHERE date > (CURRENT_DATE - INTERVAL '30 DAYS'); 
+
+RESULTS
+name	first_name	last_name	date
+Mushi	Arabella	Figg	2018-10-04T00:00:00.000Z
+Victoire	Argus	Filch	2018-10-09T00:00:00.000Z
+
+
+c)
+SELECT a.first_name, a.last_name, a.phone_number
+FROM adopters AS a
+JOIN dog_adoptions
+ON dog_adoptions.adopter_id <> a.id;
+
+RESULTS
+first_name	last_name	phone_number
+Hermione	Granger	676-464-7837
+Arabella	Figg	843-228-5239
+
+
+d)
+SELECT name
+FROM cats
+JOIN cat_adoptions
+ON cat_adoptions.cat_id <> cats.id;
+
+SELECT name
+FROM dogs
+JOIN dog_adoptions
+ON dog_adoptions.dog_id <> dogs.id;
+
+RESULTS
+Boujee
+Munchkin
+Marley
+Lassie
+Marmaduke
+
+
+e)
+SELECT a.first_name, a.last_name
+FROM adopters AS a
+JOIN dog_adoptions
+ON dog_adoptions.adopter_id = a.id;
+
+RESULTS
+first_name	last_name
+Argus	Filch
+
+
+9.
+a)
+SELECT p.name, h.rank
+FROM patrons AS p
+JOIN holds AS h
+ON p.id = h.patron_id WHERE h.isbn = '9136884926';
+
+RESULTS
+name	rank
+Terry Boot	1
+Cedric Diggory	2
+
+b)
+SELECT p.name, b.title
+FROM patrons AS p
+JOIN transactions AS t ON p.id = t.patron_id
+JOIN books AS b ON b.isbn = t.isbn;
+
+RESULTS
+name	title
+Hermione Granger	Hogwarts: A History
+Cho Chang	Advanced Potion-Making
+Terry Boot	Fantastic Beasts and Where to Find Them
+Padma Patil	Fantastic Beasts and Where to Find Them
+Terry Boot	Advanced Potion-Making
+Hermione Granger	Fantastic Beasts and Where to Find Them
+Cedric Diggory	Fantastic Beasts and Where to Find Them
